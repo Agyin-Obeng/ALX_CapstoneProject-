@@ -6,3 +6,7 @@ urlpatterns = [
     path('api/users/', include('users.urls')),
     path('api/events/', include('events.urls')),
 ]
+
+
+
+
