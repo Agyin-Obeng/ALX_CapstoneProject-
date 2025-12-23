@@ -14,6 +14,14 @@ class EventListCreateView(generics.ListCreateAPIView):
             raise PermissionError("Only sellers can create events")
         serializer.save(seller=self.request.user)
 
+class SellerEventListView(generics.ListAPIView):
+    serializer_class = EventSerializer
+    permission_classes = [permissions.IsAuthenticated, IsSeller]
+
+    def get_queryset(self):
+        return Event.objects.filter(seller=self.request.user).order_by('-created_at')
+
+
 # Retrieve, update, delete an event
 class EventDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
