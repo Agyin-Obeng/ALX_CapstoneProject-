@@ -3,7 +3,6 @@ from users.models import User
 from events.models import Event, TicketType
 import uuid
 
-
 class Ticket(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='tickets')
     ticket_type = models.ForeignKey(TicketType, on_delete=models.CASCADE)
